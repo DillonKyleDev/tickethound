@@ -7,7 +7,7 @@ const cors = require('cors');
 app.use(cors());
 const session = require('express-session');
 const passport = require('passport');
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 const PORT = process.env.PORT;
 app.use(express.json({limit: '5mb'}));
