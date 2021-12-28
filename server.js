@@ -47,6 +47,17 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
   console.log(err);
 });
 
+//Set up sessionStore using MongoStore/connect-mongo constructor
+app.use(session({
+  store: MongoStore.create({mongoUrl: process.env.DB_URI, collectionName: 'sessions'}),
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24
+  }
+}));
+
 //Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
