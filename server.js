@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+// Accessing the path module
 const path = require("path");
+
 const cors = require('cors');
 app.use(cors());
 const session = require('express-session');
@@ -75,6 +77,10 @@ app.use('/editTicket', EditTicketRouter);
 app.use('/editUser', EditUserRouter);
 app.use('/deleteProject', DeleteProjectRouter);
 app.use('/deleteUser', DeleteUserRouter);
+
+app.get("*", (request, response) => {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 app.get('/', (req, res) => {
   res.redirect('/');
