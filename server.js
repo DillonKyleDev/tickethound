@@ -7,7 +7,7 @@ const cors = require('cors');
 app.use(cors());
 const session = require('express-session');
 const passport = require('passport');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 require('dotenv').config();
 const PORT = process.env.PORT;
 app.use(express.json({limit: '5mb'}));
@@ -49,10 +49,10 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 //Set up sessionStore using MongoStore/connect-mongo constructor
 app.use(session({
+  store: MongoStore.create({mongoUrl: process.env.DB_URI, collectionName: 'sessions'}),
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({mongoUrl: process.env.DB_URI, collectionName: 'sessions'}),
   cookie: {
     maxAge: 1000 * 60 * 60 * 24
   }
