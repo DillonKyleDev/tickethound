@@ -8,8 +8,8 @@
   "description": "A ticket tracking application with credentials and roles, connected to a database",
   "main": "server.js",
   "scripts": {
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
+    "build": "cd Client && npm run build",
+    "install-client": "cd Client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "node server.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
