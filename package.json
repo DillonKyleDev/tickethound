@@ -8,8 +8,7 @@
   "description": "A ticket tracking application with credentials and roles, connected to a database",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js && cd Client && npm start",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "node server.js && cd Client && npm start"
   },
   "repository": {
     "type": "git",
